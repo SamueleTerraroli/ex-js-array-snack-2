@@ -105,7 +105,21 @@ Calcola la somma delle età (agesSum) usando reduce.
 Stampa in console l’età media degli autori dei libri.
 */
 const ages = authors.map(author => author.age);
-console.log('Età autori:', ages);
+//console.log('Età autori:', ages);
 const agesSum = ages.reduce((acc, curr) => acc + curr, 0);
-console.log('Età media:', agesSum / authors.length);
+//console.log('Età media:', agesSum / authors.length);
+
+/*
+Usando la l'API https://boolean-spec-frontend.vercel.app/freetestapi/books/{id} usa la combinazione di .map() e Promise.all(), per creare una funzione (getBooks) che a partire da un array di id (ids), ritorna una promise che risolve un array di libri (books).
+Testala con l’array [2, 13, 7, 21, 19] .
+*/
+(async () => {
+    const getBooks = async (id) => {
+        const response = await fetch(`https://boolean-spec-frontend.vercel.app/freetestapi/books/${id}`);
+        return response.json();
+    }
+    const id = [2, 13, 7, 21, 19];
+    const books = await Promise.all(id.map(getBooks));
+    console.log(books);
+})();
 
