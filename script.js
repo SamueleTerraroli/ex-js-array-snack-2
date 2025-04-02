@@ -123,3 +123,25 @@ Testala con l’array [2, 13, 7, 21, 19] .
     console.log(books);
 })();
 
+/*
+Snack 6 (Bonus) - Ordina i libri
+Crea una variabile booleana (areThereAvailableBooks) per verificare se c’è almeno un libro disponibile.
+Crea un array (booksByPrice) con gli elementi di books ordinati in base al prezzo (crescente).
+Ordina l’array booksByPricein base alla disponibilità (prima quelli disponibili), senza creare un nuovo array.
+*/
+
+const areThereAvailableBooks = books.some(book => book.available);
+console.log('ci sono libri disponibili:', areThereAvailableBooks);
+const booksByPrice = books.sort((a, b) => a.price.localeCompare(b.price, undefined, { numeric: true }));
+console.log('Libri ordinati per prezzo:', booksByPrice);
+booksByPrice.sort((a, b) => {
+    if (a.available && !b.available) {
+        return -1;
+    } else if (!a.available && b.available) {
+        return 1;
+    } else {
+        return 0;
+    }
+});
+console.log('Libri ordinati per disponibilità:', booksByPrice);
+
