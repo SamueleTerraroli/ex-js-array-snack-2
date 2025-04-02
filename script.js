@@ -59,3 +59,21 @@ console.log(longBooks);
 const longBooksTitles = longBooks.map(book => book.title);
 console.log(longBooksTitles);
 longBooksTitles.forEach(title => console.log(title));
+
+/*
+Snack 2 - Il primo libro scontato
+Creare un array (availableBooks) che contiene tutti i libri disponibili.
+Crea un array (discountedBooks) con gli availableBooks, ciascuno con il prezzo scontato del 20% (mantieni lo stesso formato e arrotonda al centesimo)
+Salva in una variabile (fullPricedBook) il primo elemento di discountedBooks che ha un prezzo intero (senza centesimi).
+*/
+
+const availableBooks = books.filter(book => book.available);
+console.log(availableBooks);
+const discountedBooks = availableBooks.map(book => {
+    discountedPrice = parseFloat(book.price) * 0.8;
+    discountedPrice = discountedPrice.toFixed(2) + '€';
+    return { ...book, price: discountedPrice };
+})
+console.log(discountedBooks);
+const fullPricedBook = discountedBooks.find(book => parseFloat(book.price) % 1 === 0);
+console.log(fullPricedBook);
